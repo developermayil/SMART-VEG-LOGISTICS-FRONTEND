@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
 import {
   Box,
   Paper,
@@ -113,6 +114,9 @@ const QUICK_ACTIONS: QuickAction[] = [
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 export default function ChatBot() {
+  const { user } = useAuth();
+
+  if (!user) return null;
   const theme = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);

@@ -4,7 +4,12 @@ import { Box, CircularProgress } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import Sidebar from "./Sidebar";
-
+import animationData from "../../../public/loading/BikrimartDelivery.json";
+import dynamic from "next/dynamic";
+import Footer from "./Footer";
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 export default function AppLayout({ children }: { children: ReactNode }) {
   const { user, loading } = useAuth();
   const router = useRouter();
@@ -23,7 +28,15 @@ export default function AppLayout({ children }: { children: ReactNode }) {
           justifyContent: "center",
         }}
       >
-        <CircularProgress color="primary" />
+        <Lottie
+          animationData={animationData}
+          loop={true}
+          autoplay={true}
+          style={{
+            width: 300,
+            height: 300,
+          }}
+        />
       </Box>
     );
   }
@@ -34,13 +47,23 @@ export default function AppLayout({ children }: { children: ReactNode }) {
     <Box
       sx={{
         display: "flex",
-        minHeight: "100vh",
+        height: "100vh",
         bgcolor: "background.default",
       }}
     >
       <Sidebar />
-      <Box component="main" sx={{ flex: 1, p: 3, overflow: "auto" }}>
-        {children}
+      <Box
+        component="main"
+        sx={{
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          height: "100vh",
+          overflow: "hidden",
+        }}
+      >
+        <Box sx={{ flex: 1, p: 3, overflow: "hidden" }}>{children}</Box>
+        <Footer />
       </Box>
     </Box>
   );

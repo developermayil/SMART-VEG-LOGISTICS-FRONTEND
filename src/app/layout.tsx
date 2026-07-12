@@ -17,6 +17,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v3.25.0/mapbox-gl.css"
+          rel="stylesheet"
+        ></link>
       </head>
       <body>
         <ThemeProvider theme={theme}>

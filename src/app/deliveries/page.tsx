@@ -1029,7 +1029,7 @@ export default function DeliveriesPage() {
   // ─── Render ─────────────────────────────────────────────────────────────────
   return (
     <AppLayout>
-      <Box sx={{ display: "flex", gap: 2, height: "calc(100vh - 100px)" }}>
+      <Box sx={{ display: "flex", gap: 2, height: "calc(100vh - 90px)" }}>
         {/* ══ LIST VIEW ══ */}
         {viewMode === "list" && (
           <Box sx={{ width: "100%" }}>
