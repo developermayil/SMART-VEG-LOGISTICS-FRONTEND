@@ -30,6 +30,11 @@ import AppLayout from "@/components/layout/AppLayout";
 import { stocksAPI, farmersAPI } from "@/services/api";
 import CommonPagination from "@/components/ui/CommonPagination";
 import { usePagination } from "@/hooks/usePagination";
+import animationData from "../../../public/loading/Packaging for Delivery.json";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 const VEGETABLES = [
   "Tomato",
   "Onion",
@@ -204,7 +209,23 @@ export default function StocksPage() {
               {loading ? (
                 <TableRow>
                   <TableCell colSpan={7} align="center" sx={{ py: 4 }}>
-                    <CircularProgress />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Lottie
+                        animationData={animationData}
+                        loop={true}
+                        autoplay={true}
+                        style={{
+                          width: 300,
+                          height: 300,
+                        }}
+                      />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ) : paginatedOrders.length === 0 ? (

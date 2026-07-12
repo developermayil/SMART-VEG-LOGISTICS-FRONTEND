@@ -54,6 +54,11 @@ const emptyForm = {
   created_date: new Date().toISOString().split("T")[0],
 };
 
+import animationData from "../../../public/loading/list.json";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 const ORDER_STATUSES = ["pending", "processing", "completed", "cancelled"];
 
 export default function OrdersPage() {
@@ -352,7 +357,23 @@ export default function OrdersPage() {
               {loading ? (
                 <TableRow>
                   <TableCell colSpan={7} align="center" sx={{ py: 4 }}>
-                    <CircularProgress />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Lottie
+                        animationData={animationData}
+                        loop={true}
+                        autoplay={true}
+                        style={{
+                          width: 300,
+                          height: 300,
+                        }}
+                      />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ) : orders.length === 0 ? (

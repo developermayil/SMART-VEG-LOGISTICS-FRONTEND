@@ -47,6 +47,11 @@ const emptyForm = {
   capacity: "",
   status: "available",
 };
+import animationData from "../../../public/loading/BikrimartDelivery.json";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 
 export default function VehiclesPage() {
   const [vehicles, setVehicles] = useState<any[]>([]);
@@ -188,7 +193,23 @@ export default function VehiclesPage() {
               {loading ? (
                 <TableRow>
                   <TableCell colSpan={8} align="center" sx={{ py: 4 }}>
-                    <CircularProgress />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Lottie
+                        animationData={animationData}
+                        loop={true}
+                        autoplay={true}
+                        style={{
+                          width: 300,
+                          height: 300,
+                        }}
+                      />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ) : paginatedvehicles?.length === 0 ? (

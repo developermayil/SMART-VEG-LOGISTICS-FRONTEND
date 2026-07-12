@@ -58,7 +58,7 @@ export default function Footer() {
           >
             Powered by
           </Typography>
-          <Favorite
+          {/* <Favorite
             sx={{
               fontSize: 12,
               color: "#E53935",
@@ -68,7 +68,7 @@ export default function Footer() {
                 "50%": { transform: "scale(1.25)" },
               },
             }}
-          />
+          /> */}
           <Box
             component="span"
             sx={{

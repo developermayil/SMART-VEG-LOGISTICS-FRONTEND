@@ -37,6 +37,11 @@ import AppLayout from "@/components/layout/AppLayout";
 import { farmersAPI } from "@/services/api";
 import CommonPagination from "@/components/ui/CommonPagination";
 import { usePagination } from "@/hooks/usePagination";
+import animationData from "../../../public/loading/Agriculture based on data.json";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 const emptyForm = {
   name: "",
   village: "",
@@ -180,7 +185,23 @@ export default function FarmersPage() {
               {loading ? (
                 <TableRow>
                   <TableCell colSpan={6} align="center" sx={{ py: 4 }}>
-                    <CircularProgress />
+                    <Box
+                      sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Lottie
+                        animationData={animationData}
+                        loop={true}
+                        autoplay={true}
+                        style={{
+                          width: 300,
+                          height: 300,
+                        }}
+                      />
+                    </Box>
                   </TableCell>
                 </TableRow>
               ) : paginatedfarmers.length === 0 ? (

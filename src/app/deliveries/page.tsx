@@ -33,6 +33,11 @@ import {
   Divider,
   LinearProgress,
 } from "@mui/material";
+import animationData from "../../../public/loading/Location.json";
+import dynamic from "next/dynamic";
+const Lottie = dynamic(() => import("lottie-react"), {
+  ssr: false,
+});
 import {
   Add,
   Edit,
@@ -447,7 +452,9 @@ export default function DeliveriesPage() {
     } catch (e) {
       console.error(e);
     } finally {
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
     }
   };
 
@@ -1094,7 +1101,23 @@ export default function DeliveriesPage() {
                     {loading ? (
                       <TableRow>
                         <TableCell colSpan={7} align="center" sx={{ py: 4 }}>
-                          <CircularProgress />
+                          <Box
+                            sx={{
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <Lottie
+                              animationData={animationData}
+                              loop={true}
+                              autoplay={true}
+                              style={{
+                                width: 300,
+                                height: 300,
+                              }}
+                            />
+                          </Box>
                         </TableCell>
                       </TableRow>
                     ) : deliveries.length === 0 ? (
